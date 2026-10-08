@@ -29,18 +29,18 @@ Route::middleware('auth:sanctum')->group(function () {
         ->only(['index', 'store', 'show', 'update']);
 
     Route::get('/dashboard', DashboardController::class);
+
+    Route::get('/leave-requests', [LeaveRequestController::class, 'index']);
+
+    Route::post('/leave-requests', [LeaveRequestController::class, 'store']);
+
+    Route::get('/leave-requests/{leaveRequest}', [
+        LeaveRequestController::class,
+        'show',
+    ]);
+
+    Route::patch('/leave-requests/{leaveRequest}/review', [
+        LeaveRequestController::class,
+        'review',
+    ]);
 });
-
-Route::get('/leave-requests', [LeaveRequestController::class, 'index']);
-
-Route::post('/leave-requests', [LeaveRequestController::class, 'store']);
-
-Route::get('/leave-requests/{leaveRequest}', [
-    LeaveRequestController::class,
-    'show',
-]);
-
-Route::patch('/leave-requests/{leaveRequest}/review', [
-    LeaveRequestController::class,
-    'review',
-]);
